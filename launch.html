@@ -14,94 +14,128 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
-    <style>
-      :root {
-        --bg: #0b1020;
-        --fg: rgba(255, 255, 255, 0.92);
-        --muted: rgba(255, 255, 255, 0.65);
-        --bar-bg: rgba(255, 255, 255, 0.12);
-        --bar-glow: #b6ff2e; /* 蛍光黄緑 */
-        --card: rgba(255, 255, 255, 0.06);
-        --card-border: rgba(255, 255, 255, 0.10);
-      }
-      html, body {
-        height: 100%;
-        margin: 0;
-        background: var(--bg);
-        color: var(--fg);
-        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", sans-serif;
-      }
-      .wrap {
-        height: 100%;
-        display: grid;
-        place-items: center;
-        padding: 24px;
-      }
-      .card {
-        width: min(520px, 92vw);
-        padding: 28px 22px 24px;
-        border-radius: 18px;
-        background: var(--card);
-        border: 1px solid var(--card-border);
-        box-shadow: 0 12px 40px rgba(0,0,0,0.35);
-        text-align: center;
-      }
-      .icon {
-        width: 104px;
-        height: 104px;
-        border-radius: 22px;
-        display: block;
-        margin: 6px auto 18px;
-        image-rendering: auto;
-        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.35));
-      }
-      .title {
-        font-weight: 800;
-        letter-spacing: 0.2px;
-        margin: 0 0 8px;
-        font-size: 18px;
-      }
-      .subtitle {
-        margin: 0 0 18px;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.6;
-      }
-      .bar {
-        width: 100%;
-        height: 12px;
-        background: var(--bar-bg);
-        border-radius: 999px;
-        overflow: hidden;
-        position: relative;
-        border: 1px solid rgba(255,255,255,0.10);
-      }
-      .bar > .fill {
-        height: 100%;
-        width: 0%;
-        background: var(--bar-glow);
-        border-radius: 999px;
-        box-shadow: 0 0 18px rgba(182, 255, 46, 0.55);
-        transition: width 120ms linear;
-      }
-      .pct {
-        margin-top: 10px;
-        font-variant-numeric: tabular-nums;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-        color: rgba(255,255,255,0.82);
-        font-size: 14px;
-      }
-      .hint {
-        margin-top: 10px;
-        font-size: 12px;
-        color: rgba(255,255,255,0.55);
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .bar > .fill { transition: none; }
-      }
-    </style>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --fg: rgba(255, 255, 255, 0.92);
+      --muted: rgba(255, 255, 255, 0.65);
+      --bar-bg: rgba(255, 255, 255, 0.12);
+      --bar-glow: #b6ff2e; /* 蛍光黄緑 */
+      --card: rgba(255, 255, 255, 0.06);
+      --card-border: rgba(255, 255, 255, 0.10);
+    }
+  
+    /* ずれ防止の基本セット */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      overflow: hidden;              /* 横スクロール由来のズレ防止 */
+    }
+  
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+  
+    /* 画面の真ん中に「常に」固定 */
+    .wrap {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: var(--bg);
+  
+      /* ノッチ/セーフエリア対応＋余白 */
+      padding:
+        calc(24px + env(safe-area-inset-top))
+        calc(24px + env(safe-area-inset-right))
+        calc(24px + env(safe-area-inset-bottom))
+        calc(24px + env(safe-area-inset-left));
+  
+      box-sizing: border-box;
+    }
+  
+    .card {
+      /* 画面サイズに応じて確実に中央で収まる */
+      width: min(520px, calc(100svw - 48px));
+      max-width: 520px;
+  
+      padding: 28px 22px 24px;
+      border-radius: 18px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+      text-align: center;
+  
+      box-sizing: border-box;
+      margin: 0;
+    }
+  
+    .icon {
+      width: 104px;
+      height: 104px;
+      border-radius: 22px;
+      display: block;
+      margin: 6px auto 18px;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.35));
+    }
+  
+    .title {
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+  
+    .subtitle {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+  
+    .bar {
+      width: 100%;
+      height: 12px;
+      background: var(--bar-bg);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.10);
+      box-sizing: border-box;
+    }
+  
+    .bar > .fill {
+      height: 100%;
+      width: 0%;
+      background: var(--bar-glow);
+      border-radius: 999px;
+      box-shadow: 0 0 18px rgba(182, 255, 46, 0.55);
+      transition: width 120ms linear;
+    }
+  
+    .pct {
+      margin-top: 10px;
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: rgba(255,255,255,0.82);
+      font-size: 14px;
+    }
+  
+    .hint {
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+    }
+  
+    @media (prefers-reduced-motion: reduce) {
+      .bar > .fill { transition: none; }
+    }
+  </style>
   </head>
 
   <body>
