@@ -4,44 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-    <link rel="apple-touch-icon" href="/icons/icon-180x180.png" />
-  <link rel="icon" href="/favicon.ico" />
-
     <title>Sales Dashboard</title>
 
-    <!-- キャッシュを極力避ける（静的HTMLだけなので安全） -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icons/icon-180x180.png" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- キャッシュ回避（更新反映用） -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
-    <!-- JSが無効でも飛べるように保険 -->
-    <meta http-equiv="refresh" content="0;url=https://sales-dashboard-myfans-candfans.streamlit.app" />
+    <!-- 入口は install.html に寄せる -->
+    <meta http-equiv="refresh" content="0;url=/install.html?v=7" />
   </head>
-
-  <body style="margin:0;background:#0b1020;color:#fff;font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Noto Sans JP',sans-serif;">
-    <div style="display:grid;place-items:center;height:100vh;padding:20px;">
-      <div style="width:min(680px,92vw);padding:22px 18px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);">
-        <div style="font-weight:700;font-size:18px;margin-bottom:8px;">Sales Dashboard</div>
-        <div style="opacity:.85;font-size:14px;line-height:1.6;">
-          起動中です… 自動で移動します。<br />
-          もし移動しない場合は下のリンクを開いてください。
-        </div>
-        <div style="margin-top:12px;">
-          <a href="YOUR_STREAMLIT_URL_HERE" rel="noopener" style="display:inline-block;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);color:#fff;text-decoration:none;">
-            ブラウザで開く
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      // 二重保険（meta refresh が効かない環境向け）
-      const url = "https://sales-dashboard-myfans-candfans.streamlit.app";
-      try {
-        window.location.replace(url);
-      } catch (e) {
-        window.location.href = url;
-      }
-    </script>
-  </body>
+  <body></body>
 </html>
