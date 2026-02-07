@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Sales Dashboard</title>
 
+    <!-- キャッシュ抑制（反映を早くする） -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
     <script>
       const STREAMLIT_URL = "https://sales-dashboard-myfans-candfans.streamlit.app/";
+
       const qs = window.location.search || "";
       const hash = window.location.hash || "";
-      const target = STREAMLIT_URL.replace(/\/$/, "") + "/" + qs + hash;
-      window.location.href = target;
+
+      // 速く・履歴も汚さない
+      window.location.replace(STREAMLIT_URL + qs + hash);
     </script>
 
     <noscript>
