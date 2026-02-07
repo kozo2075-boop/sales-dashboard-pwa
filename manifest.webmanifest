@@ -1,7 +1,9 @@
 {
   "name": "Sales Dashboard",
   "short_name": "Dashboard",
-  "start_url": "./",
+  "start_url": "/launch.html",
+  "scope": "/",
+  "display": "standalone"
   "display": "standalone",
   "background_color": "#0b1020",
   "theme_color": "#0b1020",
