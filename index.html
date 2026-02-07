@@ -39,14 +39,14 @@
     <iframe id="app" src="https://sales-dashboard-myfans-candfans.streamlit.app" allow="clipboard-read; clipboard-write"></iframe>
 
     <div class="bar">
-      もし表示されない場合：<a id="open" href="__STREAMLIT_APP_URL__" target="_blank" rel="noopener">ブラウザで開く</a>
+      もし表示されない場合：<a id="open" href="https://sales-dashboard-myfans-candfans.streamlit.app/" target="_blank" rel="noopener">ブラウザで開く</a>
     </div>
   </div>
 
   <script>
     // 軽い安全策：iOSでiframeが真っ白の時用に“開く”リンクを同じURLへ合わせる
     (function(){
-      var url="__STREAMLIT_APP_URL__";
+      var url="_https://sales-dashboard-myfans-candfans.streamlit.app/";
       document.getElementById("open").href=url;
       document.getElementById("app").src=url;
     })();
