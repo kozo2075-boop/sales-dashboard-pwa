@@ -5,23 +5,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Sales Dashboard</title>
 
-    <!-- キャッシュを弱める（更新反映用） -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
     <script>
-      // 本体（Streamlit）のURL
-      const STREAMLIT_URL = "https://sales-dashboard-myfans-candfans.streamlit.app";
-
-      // Pages側のクエリ（?v=1 など）やhashを引き継ぐ
+      const STREAMLIT_URL = "https://sales-dashboard-myfans-candfans.streamlit.app/";
       const qs = window.location.search || "";
       const hash = window.location.hash || "";
-
-      // 末尾スラッシュの有無を吸収して結合
       const target = STREAMLIT_URL.replace(/\/$/, "") + "/" + qs + hash;
-
-      // “できるだけ中間ページを挟まない”優先
       window.location.href = target;
     </script>
 
@@ -29,6 +21,5 @@
       <meta http-equiv="refresh" content="0;url=https://sales-dashboard-myfans-candfans.streamlit.app/" />
     </noscript>
   </head>
-
   <body style="margin:0;background:#0b1020;"></body>
 </html>
