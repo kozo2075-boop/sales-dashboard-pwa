@@ -6,34 +6,20 @@
 
     <title>Sales Dashboard</title>
 
-    <!-- iOS/Android icon -->
-    <link rel="apple-touch-icon" href="/icons/icon-180x180.png" />
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-
-    <!-- キャッシュ無効（更新反映を強くする） -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
     <script>
-      // ★ここをあなたの Streamlit URL に
-      const STREAMLIT_URL = "https://sales-dashboard-myfans-candfans.streamlit.app";
-
-      // Pages側の ?v= や他クエリをStreamlitにも引き継ぐ
+      const STREAMLIT_URL = "https://sales-dashboard-myfans-candfans.streamlit.app/";
       const qs = window.location.search || "";
       const hash = window.location.hash || "";
-
-      // 体感最速：履歴を残さず置き換え
       window.location.replace(STREAMLIT_URL + qs + hash);
     </script>
 
-    <!-- JS無効時の保険（通常は見えない） -->
     <noscript>
-      <meta http-equiv="refresh" content="0;url=https://sales-dashboard-myfans-candfans.streamlit.app" />
+      <meta http-equiv="refresh" content="0;url=https://sales-dashboard-myfans-candfans.streamlit.app/" />
     </noscript>
   </head>
-
-  <!-- 画面は見せない（“今すぐ表示する”を潰す） -->
   <body style="margin:0;background:#0b1020;"></body>
 </html>
