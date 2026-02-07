@@ -1,58 +1,47 @@
 <!doctype html>
 <html lang="ja">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sales Dashboard</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <!-- PWA / Icons -->
-  <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
-  <meta name="theme-color" content="#0b1020" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="Sales Dashboard" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
 
-  <style>
-    html, body { height: 100%; margin: 0; background:#0b1020; color:#e5e7eb; font-family: system-ui, -apple-system, "Noto Sans JP", "Segoe UI", sans-serif; }
-    .wrap { height:100%; display:flex; flex-direction:column; }
-    header { padding:14px 16px; display:flex; gap:10px; align-items:center; border-bottom:1px solid rgba(255,255,255,.08); }
-    header img { width:28px; height:28px; border-radius:8px; }
-    header .ttl { font-weight:700; }
-    .hint { opacity:.8; font-size:12px; margin-left:auto; }
-    iframe { flex:1; width:100%; border:0; background:#0b1020; }
-    .bar { padding:10px 16px; font-size:12px; opacity:.85; border-top:1px solid rgba(255,255,255,.08); }
-    a { color:#93c5fd; }
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <header>
-      <img src="./icons/icon-128x128.png" alt="icon">
-      <div class="ttl">Sales Dashboard</div>
-      <div class="hint">ホーム画面に追加すると“アプリ”っぽく使えます</div>
-    </header>
+    <title>Sales Dashboard</title>
 
-    <!-- TODO: ここをあなたの Streamlit Cloud のURLに変更 -->
-    <iframe id="app" src="https://sales-dashboard-myfans-candfans.streamlit.app" allow="clipboard-read; clipboard-write"></iframe>
+    <!-- キャッシュを極力避ける（静的HTMLだけなので安全） -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
 
-    <div class="bar">
-      もし表示されない場合：<a id="open" href="https://sales-dashboard-myfans-candfans.streamlit.app/" target="_blank" rel="noopener">ブラウザで開く</a>
+    <!-- JSが無効でも飛べるように保険 -->
+    <meta http-equiv="refresh" content="0;url=YOUR_STREAMLIT_URL_HERE" />
+  </head>
+
+  <body style="margin:0;background:#0b1020;color:#fff;font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Noto Sans JP',sans-serif;">
+    <div style="display:grid;place-items:center;height:100vh;padding:20px;">
+      <div style="width:min(680px,92vw);padding:22px 18px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);">
+        <div style="font-weight:700;font-size:18px;margin-bottom:8px;">Sales Dashboard</div>
+        <div style="opacity:.85;font-size:14px;line-height:1.6;">
+          起動中です… 自動で移動します。<br />
+          もし移動しない場合は下のリンクを開いてください。
+        </div>
+        <div style="margin-top:12px;">
+          <a href="YOUR_STREAMLIT_URL_HERE" rel="noopener" style="display:inline-block;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);color:#fff;text-decoration:none;">
+            ブラウザで開く
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <script>
-    // 軽い安全策：iOSでiframeが真っ白の時用に“開く”リンクを同じURLへ合わせる
-    (function(){
-      var url="_https://sales-dashboard-myfans-candfans.streamlit.app/";
-      document.getElementById("open").href=url;
-      document.getElementById("app").src=url;
-    })();
-  </script>
-  <script>
-    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('./sw.js').catch(()=>{}); }
-  </script>
-</body>
+    <script>
+      // 二重保険（meta refresh が効かない環境向け）
+      const url = "YOUR_STREAMLIT_URL_HERE";
+      try {
+        window.location.replace(url);
+      } catch (e) {
+        window.location.href = url;
+      }
+    </script>
+  </body>
 </html>
