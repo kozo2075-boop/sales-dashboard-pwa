@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sales Dashboard</title>
+
+  <!-- PWA / Icons -->
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Sales Dashboard" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <style>
+    html, body { height: 100%; margin: 0; background:#0b1020; color:#e5e7eb; font-family: system-ui, -apple-system, "Noto Sans JP", "Segoe UI", sans-serif; }
+    .wrap { height:100%; display:flex; flex-direction:column; }
+    header { padding:14px 16px; display:flex; gap:10px; align-items:center; border-bottom:1px solid rgba(255,255,255,.08); }
+    header img { width:28px; height:28px; border-radius:8px; }
+    header .ttl { font-weight:700; }
+    .hint { opacity:.8; font-size:12px; margin-left:auto; }
+    iframe { flex:1; width:100%; border:0; background:#0b1020; }
+    .bar { padding:10px 16px; font-size:12px; opacity:.85; border-top:1px solid rgba(255,255,255,.08); }
+    a { color:#93c5fd; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="./icons/icon-128x128.png" alt="icon">
+      <div class="ttl">Sales Dashboard</div>
+      <div class="hint">ホーム画面に追加すると“アプリ”っぽく使えます</div>
+    </header>
+
+    <!-- TODO: ここをあなたの Streamlit Cloud のURLに変更 -->
+    <iframe id="app" src="https://sales-dashboard-myfans-candfans.streamlit.app" allow="clipboard-read; clipboard-write"></iframe>
+
+    <div class="bar">
+      もし表示されない場合：<a id="open" href="__STREAMLIT_APP_URL__" target="_blank" rel="noopener">ブラウザで開く</a>
+    </div>
+  </div>
+
+  <script>
+    // 軽い安全策：iOSでiframeが真っ白の時用に“開く”リンクを同じURLへ合わせる
+    (function(){
+      var url="__STREAMLIT_APP_URL__";
+      document.getElementById("open").href=url;
+      document.getElementById("app").src=url;
+    })();
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('./sw.js').catch(()=>{}); }
+  </script>
+</body>
+</html>
